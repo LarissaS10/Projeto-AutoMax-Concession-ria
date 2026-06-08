@@ -1,4 +1,5 @@
 🚗 AutoMax Concessionária
+
 Aplicação monolítica desenvolvida com Spring Boot (back-end) e React (front-end) como primeira entrega do projeto de Engenharia de Software Escalável.
 
 📋 Sobre o Projeto
