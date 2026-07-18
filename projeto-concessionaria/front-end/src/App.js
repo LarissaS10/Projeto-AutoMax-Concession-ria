@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Carros from './pages/Carros';
 import Clientes from './pages/Clientes';
 import Vendas from './pages/Vendas';
+import Auditoria from './pages/Auditoria';
 import './App.css';
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
             className={pagina === 'vendas' ? 'ativo' : ''}>
             💰 Vendas
           </button>
+          <button onClick={() => setPagina('auditoria')}
+            className={pagina === 'auditoria' ? 'ativo' : ''}>
+            📋 Auditoria
+          </button>
         </nav>
       </header>
 
@@ -31,6 +36,7 @@ function App() {
         {pagina === 'carros' && <Carros />}
         {pagina === 'clientes' && <Clientes />}
         {pagina === 'vendas' && <Vendas />}
+        {pagina === 'auditoria' && <Auditoria />}
       </main>
     </div>
   );
