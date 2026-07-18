@@ -36,4 +36,19 @@ public class VendaController {
     public ResponseEntity<Venda> realizar(@Valid @RequestBody VendaDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.realizar(dto));
     }
+
+    @GetMapping("/receita")
+    public ResponseEntity<Double> receitaTotal() {
+        return ResponseEntity.ok(service.calcularReceitaTotal());
+    }
+
+    @GetMapping("/mes-atual")
+    public ResponseEntity<List<Venda>> vendasMesAtual() {
+        return ResponseEntity.ok(service.listarVendasMesAtual());
+    }
+
+    @GetMapping("/valor")
+    public ResponseEntity<List<Venda>> listarPorValorMinimo(@RequestParam Double min) {
+        return ResponseEntity.ok(service.listarPorValorMinimo(min));
+    }
 }
