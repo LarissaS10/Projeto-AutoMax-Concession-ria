@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/carros")
@@ -47,5 +48,26 @@ public class CarroController {
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         service.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/marca")
+    public ResponseEntity<List<Carro>> listarPorMarca(@RequestParam String nome) {
+        return ResponseEntity.ok(service.listarPorMarca(nome));
+    }
+
+    @GetMapping("/preco")
+    public ResponseEntity<List<Carro>> listarPorPreco(@RequestParam Double min,
+                                                      @RequestParam Double max) {
+        return ResponseEntity.ok(service.listarPorFaixaDePreco(min, max));
+    }
+
+    @GetMapping("/ano")
+    public ResponseEntity<List<Carro>> listarPorAno(@RequestParam Integer minAno) {
+        return ResponseEntity.ok(service.listarPorAno(minAno));
+    }
+
+    @GetMapping("/estatisticas")
+    public ResponseEntity<Map<String, Long>> estatisticas() {
+        return ResponseEntity.ok(service.estatisticas());
     }
 }
