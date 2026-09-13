@@ -37,3 +37,14 @@ export const auditoriaService = {
   listarPorEntidade: (entidade) => api.get(`/auditoria/entidade/${entidade}`),
   listarPorEntidadeEId: (entidade, id) => api.get(`/auditoria/entidade/${entidade}/${id}`),
 };
+
+export const testDriveService = {
+  listarTodos: () => api.get('http://localhost:8081/api/testdrive'),
+  listarPorStatus: (status) => api.get(`http://localhost:8081/api/testdrive/status?status=${status}`),
+  buscarPorId: (id) => api.get(`http://localhost:8081/api/testdrive/${id}`),
+  estatisticas: () => api.get('http://localhost:8081/api/testdrive/estatisticas'),
+  agendar: (dados) => api.post('http://localhost:8081/api/testdrive', dados),
+  realizar: (id) => api.patch(`http://localhost:8081/api/testdrive/${id}/realizar`),
+  cancelar: (id) => api.patch(`http://localhost:8081/api/testdrive/${id}/cancelar`),
+  deletar: (id) => api.delete(`http://localhost:8081/api/testdrive/${id}`),
+};

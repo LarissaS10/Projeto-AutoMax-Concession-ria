@@ -3,6 +3,7 @@ import Carros from './pages/Carros';
 import Clientes from './pages/Clientes';
 import Vendas from './pages/Vendas';
 import Auditoria from './pages/Auditoria';
+import TestDrive from './pages/TestDrive';
 import './App.css';
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
             className={pagina === 'auditoria' ? 'ativo' : ''}>
             📋 Auditoria
           </button>
+          <button onClick={() => setPagina('testdrive')}
+            className={pagina === 'testdrive' ? 'ativo' : ''}>
+            🚗 Test Drive
+          </button>
         </nav>
       </header>
 
@@ -37,6 +42,7 @@ function App() {
         {pagina === 'clientes' && <Clientes />}
         {pagina === 'vendas' && <Vendas />}
         {pagina === 'auditoria' && <Auditoria />}
+        {pagina === 'testdrive' && <TestDrive />}
       </main>
     </div>
   );
