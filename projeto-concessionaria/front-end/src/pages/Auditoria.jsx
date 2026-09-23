@@ -45,9 +45,9 @@ export default function Auditoria() {
       REMOCAO:     'vermelho',
     };
     const texto = {
-      CRIACAO:     '✚ Criação',
-      ATUALIZACAO: '✎ Atualização',
-      REMOCAO:     '✕ Remoção',
+      CRIACAO:     'Criação',
+      ATUALIZACAO: 'Atualização',
+      REMOCAO:     'Remoção',
     };
     return (
       <span className={`badge ${classe[operacao] || 'cinza'}`}>
@@ -63,16 +63,16 @@ export default function Auditoria() {
 
   return (
     <div>
-      <h2>📋 Histórico de Auditoria</h2>
+      <h2>Histórico de Auditoria</h2>
 
       <div className="form-card">
         <h3>Filtrar por Domínio</h3>
         <div className="filtros-row">
           {[
-            { valor: '',        label: '📋 Todos'    },
-            { valor: 'Carro',   label: '🚘 Carros'   },
-            { valor: 'Cliente', label: '👤 Clientes' },
-            { valor: 'Venda',   label: '💰 Vendas'   },
+            { valor: '',        label: 'Todos'    },
+            { valor: 'Carro',   label: 'Carros'   },
+            { valor: 'Cliente', label: 'Clientes' },
+            { valor: 'Venda',   label: 'Vendas'   },
           ].map(({ valor, label }) => (
             <button
               key={valor}
@@ -81,7 +81,7 @@ export default function Auditoria() {
               {label}
             </button>
           ))}
-          <button className="btn-filtro cinza" onClick={carregar}>🔄 Atualizar</button>
+          <button className="btn-filtro cinza" onClick={carregar}>Atualizar</button>
         </div>
       </div>
 

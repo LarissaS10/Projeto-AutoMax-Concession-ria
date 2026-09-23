@@ -27,7 +27,7 @@ export default function Clientes() {
 
   return (
     <div>
-      <h2>👤 Clientes</h2>
+      <h2>Clientes</h2>
 
       <form onSubmit={salvar} className="form-card">
         <h3>Cadastrar Cliente</h3>

@@ -53,7 +53,7 @@ export default function Vendas() {
     try {
       await vendaService.realizar(form);
       setForm({ clienteId: '', carroId: '', valorFinal: '' });
-      setSucesso('Venda realizada com sucesso! 🎉');
+      setSucesso('Venda realizada com sucesso!');
       setErro('');
       carregar();
       carregarReceita();
@@ -83,7 +83,7 @@ export default function Vendas() {
 
   return (
     <div>
-      <h2>💰 Vendas</h2>
+      <h2>Vendas</h2>
 
       <div className="cards-grid-3">
         <div className="card-stat">
@@ -128,11 +128,11 @@ export default function Vendas() {
         </div>
         {erro && <p className="erro">{erro}</p>}
         {sucesso && <p className="sucesso">{sucesso}</p>}
-        <button type="submit">✅ Confirmar Venda</button>
+        <button type="submit">Confirmar Venda</button>
       </form>
 
       <div className="form-card">
-        <h3>🔎 Filtrar Vendas</h3>
+        <h3>Filtrar Vendas</h3>
         <div className="filtros-row">
           <input className="filtro-input md" type="number"
             placeholder="Valor mínimo (R$)"
@@ -159,7 +159,12 @@ export default function Vendas() {
                 <td>{v.cliente?.nome}</td>
                 <td>{v.carro?.marca} {v.carro?.modelo}</td>
                 <td>R$ {v.valorFinal?.toLocaleString('pt-BR')}</td>
-                <td>{new Date(v.dataVenda).toLocaleString('pt-BR')}</td>
+                <td>{v.dataVenda ? Array.isArray(v.dataVenda)
+                  ? new Date(v.dataVenda[0], v.dataVenda[1]-1, v.dataVenda[2],
+                            v.dataVenda[3], v.dataVenda[4]).toLocaleString('pt-BR')
+                  : new Date(v.dataVenda).toLocaleString('pt-BR')
+                  : '—'}
+                </td>
               </tr>
             ))
           }

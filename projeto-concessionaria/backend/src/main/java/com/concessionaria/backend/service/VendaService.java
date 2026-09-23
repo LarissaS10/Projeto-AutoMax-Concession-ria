@@ -1,6 +1,8 @@
 package com.concessionaria.backend.service;
 
 import com.concessionaria.backend.dto.VendaDTO;
+import com.concessionaria.backend.dto.VendaEventoDTO;
+import com.concessionaria.backend.messaging.VendaEventPublisher;
 import com.concessionaria.backend.model.Carro;
 import com.concessionaria.backend.model.Cliente;
 import com.concessionaria.backend.model.Venda;
@@ -17,6 +19,7 @@ public class VendaService {
     private final CarroService carroService;
     private final ClienteService clienteService;
     private final AuditoriaService auditoriaService;
+    private final VendaEventPublisher eventPublisher;
 
     public List<Venda> listarTodas() {
         return vendaRepository.findAll();
@@ -54,6 +57,19 @@ public class VendaService {
         auditoriaService.registrar(
                 "Venda", salva.getId(), "CRIACAO",
                 null, vendaParaString(salva));
+
+        //publica evento no RabbitMQ
+        VendaEventoDTO evento = new VendaEventoDTO(
+                salva.getId(),
+                carro.getId(),
+                carro.getMarca(),
+                carro.getModelo(),
+                cliente.getId(),
+                cliente.getNome(),
+                salva.getValorFinal(),
+                salva.getDataVenda()
+        );
+        eventPublisher.publicarVendaRealizada(evento);
 
         return salva;
     }

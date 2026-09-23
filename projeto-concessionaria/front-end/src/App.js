@@ -16,23 +16,23 @@ function App() {
         <nav>
           <button onClick={() => setPagina('carros')}
             className={pagina === 'carros' ? 'ativo' : ''}>
-            🚘 Carros
+            Carros
           </button>
           <button onClick={() => setPagina('clientes')}
             className={pagina === 'clientes' ? 'ativo' : ''}>
-            👤 Clientes
+            Clientes
           </button>
           <button onClick={() => setPagina('vendas')}
             className={pagina === 'vendas' ? 'ativo' : ''}>
-            💰 Vendas
+            Vendas
           </button>
           <button onClick={() => setPagina('auditoria')}
             className={pagina === 'auditoria' ? 'ativo' : ''}>
-            📋 Auditoria
+            Auditoria
           </button>
           <button onClick={() => setPagina('testdrive')}
             className={pagina === 'testdrive' ? 'ativo' : ''}>
-            🚗 Test Drive
+            Test Drive
           </button>
         </nav>
       </header>

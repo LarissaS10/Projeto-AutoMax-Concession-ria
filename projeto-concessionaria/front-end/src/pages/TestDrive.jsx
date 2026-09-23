@@ -72,7 +72,7 @@ export default function TestDrive() {
         clienteNome: '', clienteTelefone: '',
         dataAgendada: '', observacoes: '',
       });
-      setSucesso('Test Drive agendado com sucesso! 🎉');
+      setSucesso('Test Drive agendado com sucesso!');
       setErro('');
       carregar();
       carregarEstatisticas();
@@ -141,7 +141,7 @@ export default function TestDrive() {
 
   return (
     <div>
-      <h2>🚗 Test Drive</h2>
+      <h2>Test Drive</h2>
 
       {/* Estatísticas */}
       {estatisticas && (
@@ -200,7 +200,7 @@ export default function TestDrive() {
         </div>
         {erro && <p className="erro">{erro}</p>}
         {sucesso && <p className="sucesso">{sucesso}</p>}
-        <button type="submit">📅 Agendar Test Drive</button>
+        <button type="submit">Agendar Test Drive</button>
       </form>
 
       {/* Filtros */}
@@ -208,10 +208,10 @@ export default function TestDrive() {
         <h3>Filtrar por Status</h3>
         <div className="filtros-row">
           {[
-            { valor: '', label: '📋 Todos' },
-            { valor: 'AGENDADO', label: '📅 Agendados' },
-            { valor: 'REALIZADO', label: '✅ Realizados' },
-            { valor: 'CANCELADO', label: '❌ Cancelados' },
+            { valor: '', label: 'Todos' },
+            { valor: 'AGENDADO', label: 'Agendados' },
+            { valor: 'REALIZADO', label: 'Realizados' },
+            { valor: 'CANCELADO', label: 'Cancelados' },
           ].map(({ valor, label }) => (
             <button
               key={valor}
@@ -220,7 +220,7 @@ export default function TestDrive() {
               {label}
             </button>
           ))}
-          <button className="btn-filtro cinza" onClick={carregar}>🔄 Atualizar</button>
+          <button className="btn-filtro cinza" onClick={carregar}>Atualizar</button>
         </div>
       </div>
 

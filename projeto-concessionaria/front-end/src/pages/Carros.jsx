@@ -115,7 +115,7 @@ export default function Carros() {
 
   return (
     <div>
-      <h2>🚘 Estoque de Carros</h2>
+      <h2>Estoque de Carros</h2>
 
       {estatisticas && (
         <div className="cards-grid">
@@ -157,7 +157,7 @@ export default function Carros() {
       </form>
 
       <div className="form-card">
-        <h3>🔍 Buscar Carro por ID</h3>
+        <h3>Buscar Carro por ID</h3>
         <div className="busca-id-row">
           <input className="filtro-input lg" type="number"
             placeholder="Digite o ID do carro"
@@ -197,7 +197,7 @@ export default function Carros() {
       </div>
 
       <div className="form-card">
-        <h3>🔎 Filtrar Estoque</h3>
+        <h3>Filtrar Estoque</h3>
         <div className="filtros-row">
           <input className="filtro-input md" placeholder="Filtrar por marca"
             value={filtroMarca} onChange={e => setFiltroMarca(e.target.value)} />
