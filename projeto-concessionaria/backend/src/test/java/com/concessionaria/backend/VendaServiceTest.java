@@ -1,6 +1,7 @@
 package com.concessionaria.backend;
 
 import com.concessionaria.backend.dto.VendaDTO;
+import com.concessionaria.backend.messaging.VendaEventPublisher;
 import com.concessionaria.backend.model.Carro;
 import com.concessionaria.backend.model.Carro.StatusCarro;
 import com.concessionaria.backend.model.Cliente;
@@ -30,6 +31,8 @@ public class VendaServiceTest {
     private ClienteService clienteService;
     @Mock
     private AuditoriaService auditoriaService;
+    @Mock
+    private VendaEventPublisher eventPublisher;
 
     @InjectMocks
     private VendaService vendaService;
@@ -61,6 +64,9 @@ public class VendaServiceTest {
         assertNotNull(resultado);
         assertEquals(StatusCarro.VENDIDO, carro.getStatus());
         verify(vendaRepository, times(1)).save(any(Venda.class));
+
+        //verifica se o evento foi publicado no RabbitMQ
+        verify(eventPublisher, times(1)).publicarVendaRealizada(any());
     }
 
     @Test
@@ -74,5 +80,9 @@ public class VendaServiceTest {
         dto.setCarroId(1L); dto.setClienteId(1L);
 
         assertThrows(RuntimeException.class, () -> vendaService.realizar(dto));
+
+        //carro indisponível: nada é salvo e nenhum evento é publicado
+        verify(vendaRepository, never()).save(any());
+        verify(eventPublisher, never()).publicarVendaRealizada(any());
     }
 }

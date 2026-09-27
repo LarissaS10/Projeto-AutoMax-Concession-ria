@@ -1,0 +1,60 @@
+name: CI — AutoMax Concessionaria
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build-backend:
+    name: Build e Testes — Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Compilar e testar o backend
+        working-directory: projeto-concessionaria/backend
+        run: mvn clean test
+
+  build-testdrive:
+    name: Build e Testes — testdrive-service
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Compilar e testar o testdrive-service
+        working-directory: projeto-concessionaria/testdrive-service
+        run: mvn clean test
+
+  build-eureka:
+    name: Build — Eureka Server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Compilar o eureka-server
+        working-directory: projeto-concessionaria/eureka-server
+        run: mvn clean package -DskipTests
